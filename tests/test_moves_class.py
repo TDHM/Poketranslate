@@ -1,10 +1,11 @@
 import pytest
 
+from poketranslate.moves import Moves
+
 import pandas as pd
-import poketranslate.moves as moves
 
 @pytest.fixture
-def pkms():
+def moves():
     pkm_ex_fr = ["Métamorph", "Monaflèmit", "Embrylex"]
     pkm_ex_en = ["Ditto", "Slaking", "Larvitar"]
     df_pkm = pd.DataFrame({"Source": pkm_ex_fr, "Translation": pkm_ex_en})

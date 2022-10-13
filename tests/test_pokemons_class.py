@@ -1,14 +1,15 @@
 import pytest
 
+from poketranslate.pokemons import Pokemons
+
 import pandas as pd
-import poketranslate.pokemons as pokemons
 
 @pytest.fixture
 def pkms():
     pkm_ex_fr = ["Métamorph", "Monaflèmit", "Embrylex"]
     pkm_ex_en = ["Ditto", "Slaking", "Larvitar"]
     df_pkm = pd.DataFrame({"Source": pkm_ex_fr, "Translation": pkm_ex_en})
-    pkms = pokemons.Pokemons(df_pkm, "./tbl/pkm_crystal.tbl", uppercase=True)
+    pkms = Pokemons(df_pkm, "./tbl/pkm_crystal.tbl", uppercase=True)
     
     return pkms
 
