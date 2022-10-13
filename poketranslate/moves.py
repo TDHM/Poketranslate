@@ -3,20 +3,19 @@ import pandas as pd
 from utils import make_dict_str_to_hex, get_encoding
 
 class Moves:
-    def __init__(self, moves_list_path: str, tbl_path: str, uppercase: bool) -> None:
+    def __init__(self, df_moves: pd.DataFrame, tbl_path: str, uppercase: bool) -> None:
         """Generates HEX translated TM/HM (moves) names dataframes
 
         Args:
-            moves_list_path (str): path to Excel TM/HM list
+            df_moves (pd.DataFrame): Pandas DataFrame of TM/HM list
             tbl_path (str): path to full TBL file for the corresponding game
             uppercase (bool): wether moves are upper-cased or not (default False in argparse in main.py)
         """
-        self.moves_list_path = moves_list_path
+        self.df_moves = df_moves
         self.tbl_path = tbl_path
         self.uppercase = uppercase
         
-        self.moves_list = pd.read_excel(self.moves_list_path)
-        self.moves_list.columns = ["Source", "Translation"]
+        self.df_moves.columns = ["Source", "Translation"]
         
         with open(tbl_path, 'r') as f:
                     self.tbl_data = f.read()
@@ -27,12 +26,12 @@ class Moves:
         """Add columns to pkm_list dataframe with translated HEX values
         """
         if self.uppercase:
-            self.moves_list["Source"] = self.moves_list["Source"].str.upper()
-            self.moves_list["Translation"] = self.moves_list["Translation"].str.upper()
+            self.df_moves["Source"] = self.df_moves["Source"].str.upper()
+            self.df_moves["Translation"] = self.df_moves["Translation"].str.upper()
 
-        self.moves_list["Source_hex"] = self.moves_list["Source"].apply(lambda x: get_encoding(x, self.dict_table))
-        self.moves_list["Translation_hex"] = self.moves_list["Translation"].apply(lambda x: get_encoding(x, self.dict_table))
-        self.moves_list["resized_Translation_hex"] = self.moves_list.apply(lambda x: self.match_length_hex(x["Source_hex"], x["Translation_hex"]), axis=1)
+        self.df_moves["Source_hex"] = self.df_moves["Source"].apply(lambda x: get_encoding(x, self.dict_table))
+        self.df_moves["Translation_hex"] = self.df_moves["Translation"].apply(lambda x: get_encoding(x, self.dict_table))
+        self.df_moves["resized_Translation_hex"] = self.df_moves.apply(lambda x: self.match_length_hex(x["Source_hex"], x["Translation_hex"]), axis=1)
         
     def get_moves_dataframe(self) -> pd.DataFrame:
         """Retrieve translated moves list dataframe
@@ -43,9 +42,9 @@ class Moves:
         self.generate_hex_translation()
         
         # Sort values by length in order to avoid conflicts between names during find and replace in Hex
-        self.moves_list = self.moves_list.sort_values(by="Source", key=lambda x: x.str.len(), ascending=False)
+        self.df_moves = self.df_moves.sort_values(by="Source", key=lambda x: x.str.len(), ascending=False)
         
-        return self.moves_list
+        return self.df_moves
     
     @staticmethod
     def match_length_hex(hex_value_source, hex_value_dest):

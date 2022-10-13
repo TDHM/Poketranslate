@@ -1,7 +1,8 @@
 import sys
 import argparse
-
 import time
+
+import pandas as pd
 
 from game import Game
 from pokemons import Pokemons
@@ -24,12 +25,14 @@ if __name__ == '__main__':
     parser.add_argument('--uppercase', action='store_true')
     args = parser.parse_args()
 
-    pokemons = Pokemons(args.pokemons, args.tbl, args.uppercase)
-    pkm_dataframe = pokemons.get_pkm_dataframe()
+    df_pokemons = pd.read_excel(args.pokemons)
+    pokemons = Pokemons(df_pokemons, args.tbl, args.uppercase)
+    df_translated_pkm = pokemons.get_pkm_dataframe()
     romfile = args.rom
-    moves = Moves(args.moves, args.tbl, args.uppercase)
-    moves_dataframe = moves.get_moves_dataframe()
-    game = Game(romfile=romfile, pkm_dataframe=pkm_dataframe, moves_dataframe=moves_dataframe)
+    df_moves = pd.read_excel(args.moves)
+    moves = Moves(df_moves, args.tbl, args.uppercase)
+    df_translated_moves = moves.get_moves_dataframe()
+    game = Game(romfile=romfile, pkm_dataframe=df_translated_pkm, moves_dataframe=df_translated_moves)
     game.replace_moves()
     game.replace_pkm_names()
     end = time.time()
