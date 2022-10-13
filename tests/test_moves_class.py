@@ -1,7 +1,7 @@
 import pytest
 
 import pandas as pd
-import poketranslate.pokemons as pokemons
+import poketranslate.moves as moves
 
 @pytest.fixture
 def pkms():
