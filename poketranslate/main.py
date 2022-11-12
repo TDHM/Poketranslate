@@ -4,9 +4,9 @@ import time
 
 import pandas as pd
 
-from game import Game
-from pokemons import Pokemons
-from moves import Moves
+from poketranslate.game import Game
+from poketranslate.pokemons import Pokemons
+from poketranslate.moves import Moves
 
 import pandas as pd
 

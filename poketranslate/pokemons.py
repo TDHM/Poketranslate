@@ -1,6 +1,6 @@
 import pandas as pd
 
-from utils import make_dict_str_to_hex, get_encoding
+from poketranslate.utils import make_dict_str_to_hex, get_encoding
 
 class Pokemons:
     def __init__(self, df_pokemons: pd.DataFrame, tbl_path: str, uppercase: bool) -> None:
