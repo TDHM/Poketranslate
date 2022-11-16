@@ -2,13 +2,10 @@
 
 ![Example of automatic translation on a GBC ROM](poketranslate_gbc.png)
 
-> Welcome on PokeTranslate**! This software automatically translates into any language parts of Pokemon ROMs. Currently, Pokemon names, moves (TM/HM) are supported.**
-> 
+Welcome on PokeTranslate**! This software automatically translates into any language parts of Pokemon ROMs. Currently, Pokemon names, moves (TM/HM) are supported.
 
-<aside>
-💡 **Disclaimer: The software is still under development. Alpha versions are provided for testing purposes, please report any bug you may find.**
-
-</aside>
+> 💡 Disclaimer: The software is still under development. Alpha versions are provided for testing purposes, please report any bug you may find.
+>
 
 # Installation
 
