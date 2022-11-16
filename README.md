@@ -2,14 +2,12 @@
 
 ![Example of automatic translation on a GBC ROM](poketranslate_gbc.png)
 
-Welcome on PokeTranslate**! This software automatically translates into any language parts of Pokemon ROMs. Currently, Pokemon names, moves (TM/HM) are supported.
+### Welcome on PokeTranslate! This software automatically translates into any language parts of Pokemon ROMs. Currently, Pokemon names, moves (TM/HM) are supported.
 
 > 💡 Disclaimer: The software is still under development. Alpha versions are provided for testing purposes, please report any bug you may find.
 >
 
 # Installation
-
----
 
 You need Python to run this program. It can be installed easily using Pip:
 
@@ -18,8 +16,6 @@ pip install poketranslate
 ```
 
 # How to use
-
----
 
 After having installed PokeTranslate in a Python environment, you can run it by command line:
 
